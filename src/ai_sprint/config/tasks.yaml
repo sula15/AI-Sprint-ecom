@@ -1,0 +1,27 @@
+# tasks.yaml
+find_deal_urls:
+  description: |
+    Find product deals for {product_type} within ${budget} budget.
+    Return top 5 most relevant e-commerce URLs where these products can be found.
+  expected_output: |
+    A list of upto 5 relevant product URLs with brief descriptions.
+  agent: url_finder_agent
+
+scrape_deals:
+  description: |
+    For each URL provided, extract information for the top 3 most relevant products.
+    Include price, title, and any available shipping information.
+  expected_output: |
+    A list of products found on each website with their details.
+  agent: scraper_agent
+
+analyze_deals:
+  description: |
+    Compare the scraped products and identify the best deals based on:
+    - Total cost (price + shipping)
+    - Product features
+    - Seller reliability
+    Rank the top 3 best options.
+  expected_output: 
+    A ranked list of the best 3 deals with explanations for each choice on a table format.
+  agent: analyzer_agent
